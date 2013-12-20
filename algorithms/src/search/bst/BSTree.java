@@ -4,19 +4,19 @@ public class BSTree<T extends Comparable<T>, S> {
 
     private BSTNode<T, S> root;
 
-    public void addKey(T key, S value) {
-        root = addKey(root, new BSTNode<T, S>(key, value, null, null));
+    public void add(T key, S value) {
+        root = add(root, new BSTNode<T, S>(key, value, null, null));
 
     }
 
-    private BSTNode<T, S> addKey(BSTNode<T, S> curNode, BSTNode<T, S> newNode) {
+    private BSTNode<T, S> add(BSTNode<T, S> curNode, BSTNode<T, S> newNode) {
         if (curNode == null)
             return newNode;
 
         if (newNode.getKey().compareTo(curNode.getKey()) < 0) {
-            curNode.setLeft(addKey(curNode.getLeft(), newNode));
+            curNode.setLeft(add(curNode.getLeft(), newNode));
         } else if (newNode.getKey().compareTo(curNode.getKey()) > 0) {
-            curNode.setRight(addKey(curNode.getRight(), newNode));
+            curNode.setRight(add(curNode.getRight(), newNode));
         } else {
             curNode.setValue(newNode.getValue());
         }
@@ -64,13 +64,13 @@ public class BSTree<T extends Comparable<T>, S> {
     public static void main(String[] args) {
         BSTree<Character, String> myTree = new BSTree<Character, String>();
 
-        myTree.addKey('H', "Hello");
-        myTree.addKey('C', "Cat");
-        myTree.addKey('X', "Xmas");
-        myTree.addKey('T', "Toy");
-        myTree.addKey('A', "Apple");
-        myTree.addKey('M', "Money");
-        myTree.addKey('A', "Aeroplane");
+        myTree.add('H', "Hello");
+        myTree.add('C', "Cat");
+        myTree.add('X', "Xmas");
+        myTree.add('T', "Toy");
+        myTree.add('A', "Apple");
+        myTree.add('M', "Money");
+        myTree.add('A', "Aeroplane");
 
         myTree.preOrderTraverse(myTree.root);
         System.out.println();
