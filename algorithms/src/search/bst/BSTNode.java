@@ -1,14 +1,16 @@
 package search.bst;
 
-public class BSTNode<T extends Comparable<T>> {
+public class BSTNode<T extends Comparable<T>, S> {
 
     private T key;
-    private BSTNode<T> left;
-    private BSTNode<T> right;
+    private S value;
+    private BSTNode<T, S> left;
+    private BSTNode<T, S> right;
 
-    public BSTNode(T key, BSTNode<T> left, BSTNode<T> right) {
+    public BSTNode(T key, S value, BSTNode<T, S> left, BSTNode<T, S> right) {
         super();
         this.key = key;
+        this.value = value;
         this.left = left;
         this.right = right;
     }
@@ -21,25 +23,33 @@ public class BSTNode<T extends Comparable<T>> {
         this.key = key;
     }
 
-    public BSTNode<T> getLeft() {
+    public S getValue() {
+        return value;
+    }
+
+    public void setValue(S value) {
+        this.value = value;
+    }
+
+    public BSTNode<T, S> getLeft() {
         return left;
     }
 
-    public void setLeft(BSTNode<T> left) {
+    public void setLeft(BSTNode<T, S> left) {
         this.left = left;
     }
 
-    public BSTNode<T> getRight() {
+    public BSTNode<T, S> getRight() {
         return right;
     }
 
-    public void setRight(BSTNode<T> right) {
+    public void setRight(BSTNode<T, S> right) {
         this.right = right;
     }
 
     @Override
     public String toString() {
-        return "BSTNode [key=" + key + ", left=" + left + ", right=" + right + "]";
+        return "BSTNode [key=" + key + ", value=" + value + ", left=" + left + ", right=" + right + "]";
     }
 
 }

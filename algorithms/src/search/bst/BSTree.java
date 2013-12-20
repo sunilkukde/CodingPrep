@@ -1,15 +1,15 @@
 package search.bst;
 
-public class BSTree<T extends Comparable<T>> {
+public class BSTree<T extends Comparable<T>, S> {
 
-    private BSTNode<T> root;
+    private BSTNode<T, S> root;
 
-    public void addKey(T key) {
-        root = addKey(root, new BSTNode<T>(key, null, null));
+    public void addKey(T key, S value) {
+        root = addKey(root, new BSTNode<T, S>(key, value, null, null));
 
     }
 
-    private BSTNode<T> addKey(BSTNode<T> curNode, BSTNode<T> newNode) {
+    private BSTNode<T, S> addKey(BSTNode<T, S> curNode, BSTNode<T, S> newNode) {
         if (curNode == null)
             return newNode;
 
@@ -17,24 +17,26 @@ public class BSTree<T extends Comparable<T>> {
             curNode.setLeft(addKey(curNode.getLeft(), newNode));
         } else if (newNode.getKey().compareTo(curNode.getKey()) > 0) {
             curNode.setRight(addKey(curNode.getRight(), newNode));
+        } else {
+            curNode.setValue(newNode.getValue());
         }
-        
+
         return curNode;
 
     }
 
-    public void preOrderTraverse(BSTNode<T> node) {
+    public void preOrderTraverse(BSTNode<T, S> node) {
         if (node != null) {
             preOrderTraverse(node.getLeft());
-            System.out.println(node.getKey());
+            System.out.println(node);
             preOrderTraverse(node.getRight());
         }
 
     }
 
-    public void inOrderTraverse(BSTNode<T> node) {
+    public void inOrderTraverse(BSTNode<T, S> node) {
         if (node != null) {
-            System.out.println(node.getKey());
+            System.out.println(node);
             inOrderTraverse(node.getLeft());
             inOrderTraverse(node.getRight());
         }
@@ -42,15 +44,15 @@ public class BSTree<T extends Comparable<T>> {
     }
 
     public static void main(String[] args) {
-        BSTree<Character> myTree = new BSTree<Character>();
+        BSTree<Character, String> myTree = new BSTree<Character, String>();
 
-        myTree.addKey('H');
-        myTree.addKey('C');
-        myTree.addKey('X');
-        myTree.addKey('T');
-        myTree.addKey('A');
-        myTree.addKey('M');
-        myTree.addKey('A');
+        myTree.addKey('H', "Hello");
+        myTree.addKey('C', "Cat");
+        myTree.addKey('X', "Xmas");
+        myTree.addKey('T', "Toy");
+        myTree.addKey('A', "Apple");
+        myTree.addKey('M', "Money");
+        myTree.addKey('A', "Aeroplane");
 
         myTree.preOrderTraverse(myTree.root);
         System.out.println();
