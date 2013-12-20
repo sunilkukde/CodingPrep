@@ -25,6 +25,24 @@ public class BSTree<T extends Comparable<T>, S> {
 
     }
 
+    public S search(T key) {
+        return search(root, key);
+    }
+
+    private S search(BSTNode<T, S> node, T key) {
+        if (node == null) {
+            return null;
+        }
+
+        if (key.compareTo(node.getKey()) < 0) {
+            return search(node.getLeft(), key);
+        } else if (key.compareTo(node.getKey()) > 0) {
+            return search(node.getRight(), key);
+        } else {
+            return node.getValue();
+        }
+    }
+
     public void preOrderTraverse(BSTNode<T, S> node) {
         if (node != null) {
             preOrderTraverse(node.getLeft());
@@ -57,5 +75,7 @@ public class BSTree<T extends Comparable<T>, S> {
         myTree.preOrderTraverse(myTree.root);
         System.out.println();
         myTree.inOrderTraverse(myTree.root);
+
+        System.out.println("Search result: " + myTree.search('T'));
     }
 }
