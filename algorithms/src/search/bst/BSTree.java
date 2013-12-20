@@ -45,8 +45,8 @@ public class BSTree<T extends Comparable<T>, S> {
 
     public void preOrderTraverse(BSTNode<T, S> node) {
         if (node != null) {
-            preOrderTraverse(node.getLeft());
             System.out.println(node);
+            preOrderTraverse(node.getLeft());
             preOrderTraverse(node.getRight());
         }
 
@@ -54,8 +54,8 @@ public class BSTree<T extends Comparable<T>, S> {
 
     public void inOrderTraverse(BSTNode<T, S> node) {
         if (node != null) {
-            System.out.println(node);
             inOrderTraverse(node.getLeft());
+            System.out.println(node);
             inOrderTraverse(node.getRight());
         }
 
