@@ -6,7 +6,7 @@ public class MergeSortArray {
 
     private void merge(Comparable[] list, int lo, int mid, int hi) {
         Comparable[] newList = new Comparable[list.length];
-        System.arraycopy(list, 0, newList, 0, list.length);
+        System.arraycopy(list, lo, newList, lo, hi - lo + 1);
 
         int j = lo;
         int k = mid;
