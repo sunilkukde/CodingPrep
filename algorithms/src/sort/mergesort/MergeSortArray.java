@@ -15,7 +15,7 @@ public class MergeSortArray {
                 list[i] = newList[k++];
             else if (k > hi)
                 list[i] = newList[j++];
-            else if (newList[j].compareTo(newList[k]) < 1)
+            else if (newList[j].compareTo(newList[k]) < 1) // Stable sort
                 list[i] = newList[j++];
             else
                 list[i] = newList[k++];
